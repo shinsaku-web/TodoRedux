@@ -1,4 +1,4 @@
-import { add } from '@/features/todos/todoSlice'
+import { addTodo, deleteTodo } from '@/features/todos/todoSlice'
 import { Todo } from '@/types/todotypes'
 import {
   Box,
@@ -30,7 +30,7 @@ export const UpdateTodoTemplate = () => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(add({ title: newTodo.title, content: newTodo.content }))
+    dispatch(addTodo({ title: newTodo.title, content: newTodo.content }))
     router.push('/')
   }
 
@@ -38,9 +38,9 @@ export const UpdateTodoTemplate = () => {
     router.push('/')
   }
 
-  const handleDelete = () => {
+  const handleDelete = (id: number) => {
     if (confirm('本当に削除しますか？')) {
-      // TODO:削除処理を記述する
+      dispatch(deleteTodo({ id }))
       router.push('/')
     }
   }
@@ -78,7 +78,7 @@ export const UpdateTodoTemplate = () => {
           <Button onClick={handleGoToTop} w={'full'} mt='4'>
             Go To Top
           </Button>
-          <Button colorScheme={'red'} onClick={handleDelete} w={'full'} mt='4'>
+          <Button colorScheme={'red'} onClick={() => handleDelete(Number(id))} w={'full'} mt='4'>
             Delete This Todo
           </Button>
         </Box>

@@ -14,12 +14,16 @@ export const todoSlice = createSlice({
   name: 'todos',
   initialState: initialTodos,
   reducers: {
-    add: (state, { payload: { title, content } }) => {
+    addTodo: (state, { payload: { title, content } }) => {
       state.todos.push({ id: getRandomId(), title, content })
+    },
+    deleteTodo: (state, { payload: { id } }) => {
+      const newTodos = state.todos.filter((todo) => todo.id !== id)
+      state.todos = newTodos
     },
   },
 })
 
-export const { add } = todoSlice.actions
+export const { addTodo, deleteTodo } = todoSlice.actions
 
 export default todoSlice.reducer
