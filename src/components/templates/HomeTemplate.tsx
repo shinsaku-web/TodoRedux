@@ -1,7 +1,7 @@
 import { CheckIcon } from '@chakra-ui/icons'
 import { Box, CheckboxIcon, Heading, List, ListIcon, ListItem, Text } from '@chakra-ui/react'
 import { css } from '@emotion/react'
-import { TodoItem } from '../organisms/TodoItem'
+import { TodoItem } from '../molecules/TodoItem'
 
 export const HomeTemplate = () => {
   const style = css({
