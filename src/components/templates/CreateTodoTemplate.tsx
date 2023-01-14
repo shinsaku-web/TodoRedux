@@ -32,6 +32,9 @@ export const CreateTodoTemplate = () => {
     dispatch(add({ title: newTodo.title, content: newTodo.content }))
     router.push('/')
   }
+  const handleGoToTop = () => {
+    router.push('/')
+  }
 
   return (
     <Box>
@@ -62,6 +65,9 @@ export const CreateTodoTemplate = () => {
         <Box pt={8}>
           <Button onClick={handleClick} w={'full'}>
             Create
+          </Button>
+          <Button onClick={handleGoToTop} w={'full'} mt='4'>
+            Go To Top
           </Button>
         </Box>
       </Box>
