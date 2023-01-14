@@ -17,6 +17,19 @@ export const todoSlice = createSlice({
     addTodo: (state, { payload: { title, content } }) => {
       state.todos.push({ id: getRandomId(), title, content })
     },
+    updateTodo: (state, { payload: { id, title, content } }) => {
+      const newTodos = state.todos.map((todo) => {
+        if (todo.id === Number(id)) {
+          return {
+            id,
+            title,
+            content,
+          }
+        }
+        return todo
+      })
+      state.todos = newTodos
+    },
     deleteTodo: (state, { payload: { id } }) => {
       const newTodos = state.todos.filter((todo) => todo.id !== id)
       state.todos = newTodos
@@ -24,6 +37,6 @@ export const todoSlice = createSlice({
   },
 })
 
-export const { addTodo, deleteTodo } = todoSlice.actions
+export const { addTodo, updateTodo, deleteTodo } = todoSlice.actions
 
 export default todoSlice.reducer

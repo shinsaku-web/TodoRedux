@@ -1,4 +1,4 @@
-import { addTodo, deleteTodo } from '@/features/todos/todoSlice'
+import { deleteTodo, updateTodo } from '@/features/todos/todoSlice'
 import { Todo } from '@/types/todotypes'
 import {
   Box,
@@ -29,8 +29,9 @@ export const UpdateTodoTemplate = () => {
 
   const dispatch = useDispatch()
 
-  const handleClick = () => {
-    dispatch(addTodo({ title: newTodo.title, content: newTodo.content }))
+  const handleUpdate = () => {
+    // TODO:純粋関数にすること
+    dispatch(updateTodo({ id, title: newTodo.title, content: newTodo.content }))
     router.push('/')
   }
 
@@ -72,7 +73,7 @@ export const UpdateTodoTemplate = () => {
           <FormHelperText>Enter your todo detail.</FormHelperText>
         </FormControl>
         <Box pt={8}>
-          <Button colorScheme='blue' onClick={handleClick} w={'full'}>
+          <Button colorScheme='blue' onClick={handleUpdate} w={'full'}>
             Update
           </Button>
           <Button onClick={handleGoToTop} w={'full'} mt='4'>
