@@ -1,8 +1,12 @@
 {
-"extends": [
-   "next/core-web-vitals",
-   "plugin:import/recommended",
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:import/recommended",
     "plugin:import/warnings",
     "prettier"
- ]
+  ],
+  "plugins": ["unused-imports"],
+  "rules": {
+    "unused-imports/no-unused-imports": "warn"
+  }
 }
