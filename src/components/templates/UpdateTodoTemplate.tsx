@@ -15,6 +15,8 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 export const UpdateTodoTemplate = () => {
+  const router = useRouter()
+  const { id } = router.query
   const [newTodo, setNewTodo] = useState<Omit<Todo, 'id'>>({ title: '', content: '' })
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +28,6 @@ export const UpdateTodoTemplate = () => {
   }
 
   const dispatch = useDispatch()
-  const router = useRouter()
 
   const handleClick = () => {
     dispatch(add({ title: newTodo.title, content: newTodo.content }))
@@ -40,7 +41,7 @@ export const UpdateTodoTemplate = () => {
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
-        Update Todo
+        Update Todo {id}
       </Heading>
       <Box pt={6}>
         <FormControl>

@@ -24,7 +24,7 @@ export const HomeTemplate = () => {
         <List spacing={3}>
           {todos.map((todo) => (
             <li key={todo.id}>
-              <TodoItem text={todo.title} />
+              <TodoItem id={todo.id} title={todo.title} />
             </li>
           ))}
         </List>

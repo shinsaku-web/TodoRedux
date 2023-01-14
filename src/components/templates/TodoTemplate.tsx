@@ -1,21 +1,15 @@
-import { Box, Heading, List } from '@chakra-ui/react'
-import { TodoItem } from '../molecules/TodoItem'
+import { Box, Heading } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
 export const TodoTemplate = () => {
+  const router = useRouter()
+  const { id } = router.query
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
         TodoTemplate
       </Heading>
-      <Box pt={6}>
-        <List spacing={3}>
-          {[0, 1, 2].map((_) => (
-            <li key={_}>
-              <TodoItem text='todo1' />
-            </li>
-          ))}
-        </List>
-      </Box>
+      <Box pt={6}>{id}</Box>
     </Box>
   )
 }
