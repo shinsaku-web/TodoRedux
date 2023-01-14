@@ -63,7 +63,7 @@ export const CreateTodoTemplate = () => {
           <FormHelperText>Enter your todo detail.</FormHelperText>
         </FormControl>
         <Box pt={8}>
-          <Button onClick={handleClick} w={'full'}>
+          <Button colorScheme={'blue'} onClick={handleClick} w={'full'}>
             Create
           </Button>
           <Button onClick={handleGoToTop} w={'full'} mt='4'>
