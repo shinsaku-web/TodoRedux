@@ -1,11 +1,12 @@
+import { Box, Heading } from "@chakra-ui/react";
 
 
 export default function Home() {
   return (
-    <>
-      <p>
-      test
-      </p>
-    </>
+    <Box>
+      <Heading as='h1' size='xl' textAlign={"center"}>
+        Todo App
+      </Heading>
+    </Box>
   )
 }
