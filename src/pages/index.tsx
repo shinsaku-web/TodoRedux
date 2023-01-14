@@ -1,9 +1,5 @@
-import { HomeTemplate } from "@/components/templates/HomeTemplate";
-import { Box, Heading } from "@chakra-ui/react";
-
+import { HomeTemplate } from '@/components/templates/HomeTemplate'
 
 export default function Home() {
-  return (
-    <HomeTemplate/>
-  )
+  return <HomeTemplate />
 }
