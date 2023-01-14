@@ -38,6 +38,13 @@ export const UpdateTodoTemplate = () => {
     router.push('/')
   }
 
+  const handleDelete = () => {
+    if (confirm('本当に削除しますか？')) {
+      // TODO:削除処理を記述する
+      router.push('/')
+    }
+  }
+
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
@@ -65,11 +72,14 @@ export const UpdateTodoTemplate = () => {
           <FormHelperText>Enter your todo detail.</FormHelperText>
         </FormControl>
         <Box pt={8}>
-          <Button onClick={handleClick} w={'full'}>
+          <Button colorScheme='blue' onClick={handleClick} w={'full'}>
             Update
           </Button>
           <Button onClick={handleGoToTop} w={'full'} mt='4'>
             Go To Top
+          </Button>
+          <Button colorScheme={'red'} onClick={handleDelete} w={'full'} mt='4'>
+            Delete This Todo
           </Button>
         </Box>
       </Box>
