@@ -1,11 +1,11 @@
 import { Box, Heading, List } from '@chakra-ui/react'
 import { TodoItem } from '../molecules/TodoItem'
 
-export const HomeTemplate = () => {
+export const TodoTemplate = () => {
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
-        Todo App
+        TodoTemplate
       </Heading>
       <Box pt={6}>
         <List spacing={3}>
