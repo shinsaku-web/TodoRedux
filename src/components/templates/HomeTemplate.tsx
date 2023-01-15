@@ -18,7 +18,7 @@ export const HomeTemplate = () => {
         Todo App
       </Heading>
       <Box pt={6} display='flex' justifyContent={'space-around'}>
-        <Button onClick={handleClick}>新規作成</Button>
+        <Button onClick={handleClick}>Create Todo</Button>
       </Box>
       <Box pt={6}>
         <List spacing={3}>
