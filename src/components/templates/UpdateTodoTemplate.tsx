@@ -1,5 +1,4 @@
-import { useTodos } from '@/hooks/useTodos'
-import { Todo } from '@/types/todotypes'
+import { useUpdateTodoTemplate } from '@/hooks/templates/useUpdateTodoTemplate'
 import {
   Box,
   Button,
@@ -10,41 +9,17 @@ import {
   Input,
   Textarea,
 } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
 
 export const UpdateTodoTemplate = () => {
-  const router = useRouter()
-  const { id } = router.query
-  const { useGetTodo, todoUpdate, todoDelete } = useTodos()
-
-  const initialTodo = useGetTodo(Number(id))
-  const [newTodo, setNewTodo] = useState<Todo>(initialTodo)
-
-  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTodo((prev) => ({ ...prev, title: e.target.value }))
-  }
-
-  const handleChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewTodo((prev) => ({ ...prev, content: e.target.value }))
-  }
-
-  const handleUpdate = (todo: Todo) => {
-    todoUpdate(todo)
-    router.push('/')
-  }
-
-  const handleGoToTop = () => {
-    router.push('/')
-  }
-
-  const handleDelete = (id: number) => {
-    if (confirm('本当に削除しますか？')) {
-      todoDelete(id)
-      router.push('/')
-    }
-  }
-
+  const {
+    id,
+    newTodo,
+    handleChangeTitle,
+    handleChangeContent,
+    handleUpdate,
+    handleGoToTop,
+    handleDelete,
+  } = useUpdateTodoTemplate()
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
