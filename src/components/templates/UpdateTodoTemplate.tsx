@@ -1,4 +1,5 @@
-import { deleteTodo, updateTodo } from '@/features/todos/todoSlice'
+import { deleteTodo } from '@/features/todos/todoSlice'
+import { useTodos } from '@/hooks/useTodos'
 import { Todo } from '@/types/todotypes'
 import {
   Box,
@@ -29,8 +30,10 @@ export const UpdateTodoTemplate = () => {
 
   const dispatch = useDispatch()
 
+  const { todoUpdate } = useTodos()
+
   const handleUpdate = (id: number, title: string, content: string) => {
-    dispatch(updateTodo({ id, title, content }))
+    todoUpdate(id, title, content)
     router.push('/')
   }
 

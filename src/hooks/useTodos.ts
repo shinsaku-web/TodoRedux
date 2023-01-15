@@ -1,12 +1,17 @@
+import { updateTodo } from '@/features/todos/todoSlice'
 import { useTodoDispatch, useTodoSelector } from './hooks'
 
-const useGetTodos = () => useTodoSelector((state) => state.todos.todos)
-const useGetTodo = (id: number) => {
-  const [todo] = useTodoSelector((state) => state.todos.todos.filter((todo) => todo.id === id))
-  return todo
-}
-
 export const useTodos = () => {
+  const useGetTodos = () => useTodoSelector((state) => state.todos.todos)
+  const useGetTodo = (id: number) => {
+    const [todo] = useTodoSelector((state) => state.todos.todos.filter((todo) => todo.id === id))
+    return todo
+  }
+
   const dispatch = useTodoDispatch()
-  return { useGetTodos, useGetTodo }
+
+  const todoUpdate = (id: number, title: string, content: string) => {
+    dispatch(updateTodo({ id, title, content }))
+  }
+  return { useGetTodos, useGetTodo, todoUpdate }
 }
