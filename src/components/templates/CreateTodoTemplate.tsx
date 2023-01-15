@@ -1,4 +1,4 @@
-import { addTodo } from '@/features/todos/todoSlice'
+import { createTodo } from '@/features/todos/todoSlice'
 import { Todo } from '@/types/todotypes'
 import {
   Box,
@@ -29,7 +29,7 @@ export const CreateTodoTemplate = () => {
   const router = useRouter()
 
   const handleClick = () => {
-    dispatch(addTodo({ title: newTodo.title, content: newTodo.content }))
+    dispatch(createTodo({ title: newTodo.title, content: newTodo.content }))
     router.push('/')
   }
   const handleGoToTop = () => {
