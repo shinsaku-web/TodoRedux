@@ -1,21 +1,8 @@
-import { useTodos } from '@/hooks/useTodos'
+import { useTodoTemplate } from '@/hooks/templates/useTodoTemplate'
 import { Box, Button, Heading, Text } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
 
 export const TodoTemplate = () => {
-  const router = useRouter()
-  const { id } = router.query
-  const { useGetTodo } = useTodos()
-  const todo = useGetTodo(Number(id))
-
-  const handleTopButton = () => {
-    router.push('/')
-  }
-
-  const handleUpdateButton = (id: number) => {
-    router.push(`/update/${id}`)
-  }
-
+  const { id, todo, handleTopButton, handleUpdateButton } = useTodoTemplate()
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
