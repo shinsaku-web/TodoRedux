@@ -25,11 +25,17 @@ export const TodoTemplate = () => {
         <Button onClick={handleTopButton}>Go To Top</Button>
         <Button onClick={() => handleUpdateButton(Number(id))}>Update Todo</Button>
       </Box>
-      <Box pt={10}>
-        <Heading as={'h2'} size={'md'}>
-          {todo.title}
-        </Heading>
-        <Text mt={4}>{todo.content}</Text>
+      <Box pt={6}>
+        <Box pt={0}>
+          〜Title〜
+          <Heading as={'h2'} size={'md'} mt='2'>
+            {todo.title}
+          </Heading>
+        </Box>
+        <Box pt={6}>
+          〜Content〜
+          <Text mt={2}>{todo.content}</Text>
+        </Box>
       </Box>
     </Box>
   )
