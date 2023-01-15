@@ -1,11 +1,11 @@
-import { Todo } from '@/types/todotypes'
+import { useTodos } from '@/hooks/useTodos'
 import { Box, Button, Heading, List } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
 import { TodoItem } from '../molecules/TodoItem'
 
 export const HomeTemplate = () => {
-  const todos = useSelector((state: { todos: { todos: Todo[] } }) => state.todos.todos)
+  const { useGetTodos } = useTodos()
+  const todos = useGetTodos()
 
   const router = useRouter()
   const handleClick = () => {

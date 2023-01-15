@@ -1,6 +1,7 @@
+import { Todo } from '@/types/todotypes'
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialTodos = {
+const initialTodos: { todos: Todo[] } = {
   todos: [
     { id: 1, title: '手羽先を食べる', content: 'Todo1の内容です。' },
     { id: 2, title: 'ラーメンを食べる', content: 'Todo2の内容です。' },
