@@ -1,5 +1,5 @@
 import { Todo } from '@/types/todotypes'
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialTodos: { todos: Todo[] } = {
   todos: [
@@ -9,30 +9,34 @@ const initialTodos: { todos: Todo[] } = {
   ],
 }
 
-const getRandomId = () => Math.floor(Math.random() * 100000000000)
+const getRandomId = () => Math.floor(Math.random() * 10 ** 10)
 
 export const todoSlice = createSlice({
   name: 'todos',
   initialState: initialTodos,
   reducers: {
-    createTodo: (state, { payload: { title, content } }) => {
-      state.todos.push({ id: getRandomId(), title, content })
+    createTodo: (state, action: PayloadAction<Omit<Todo, 'id'>>) => {
+      state.todos.push({
+        id: getRandomId(),
+        title: action.payload.title,
+        content: action.payload.content,
+      })
     },
-    updateTodo: (state, { payload: { id, title, content } }) => {
+    updateTodo: (state, action: PayloadAction<Todo>) => {
       const newTodos = state.todos.map((todo) => {
-        if (todo.id === Number(id)) {
+        if (todo.id === Number(action.payload.id)) {
           return {
-            id,
-            title,
-            content,
+            id: todo.id,
+            title: action.payload.title,
+            content: action.payload.content,
           }
         }
         return todo
       })
       state.todos = newTodos
     },
-    deleteTodo: (state, { payload: { id } }) => {
-      const newTodos = state.todos.filter((todo) => todo.id !== id)
+    deleteTodo: (state, action: PayloadAction<Pick<Todo, 'id'>>) => {
+      const newTodos = state.todos.filter((todo) => todo.id !== action.payload.id)
       state.todos = newTodos
     },
   },
