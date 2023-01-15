@@ -28,7 +28,7 @@ export const CreateTodoTemplate = () => {
   const router = useRouter()
 
   const handleClick = () => {
-    todoCreate(newTodo.title, newTodo.content)
+    todoCreate(newTodo)
     router.push('/')
   }
   const handleGoToTop = () => {

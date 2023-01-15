@@ -19,7 +19,7 @@ export const UpdateTodoTemplate = () => {
   const { useGetTodo, todoUpdate, todoDelete } = useTodos()
 
   const initialTodo = useGetTodo(Number(id))
-  const [newTodo, setNewTodo] = useState<Omit<Todo, 'id'>>(initialTodo)
+  const [newTodo, setNewTodo] = useState<Todo>(initialTodo)
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodo((prev) => ({ ...prev, title: e.target.value }))
@@ -29,8 +29,8 @@ export const UpdateTodoTemplate = () => {
     setNewTodo((prev) => ({ ...prev, content: e.target.value }))
   }
 
-  const handleUpdate = (id: number, title: string, content: string) => {
-    todoUpdate(id, title, content)
+  const handleUpdate = (todo: Todo) => {
+    todoUpdate(todo)
     router.push('/')
   }
 
@@ -72,11 +72,7 @@ export const UpdateTodoTemplate = () => {
           <FormHelperText>Enter your todo detail.</FormHelperText>
         </FormControl>
         <Box pt={8}>
-          <Button
-            colorScheme='blue'
-            onClick={() => handleUpdate(Number(id), newTodo.title, newTodo.content)}
-            w={'full'}
-          >
+          <Button colorScheme='blue' onClick={() => handleUpdate(newTodo)} w={'full'}>
             Update
           </Button>
           <Button onClick={handleGoToTop} w={'full'} mt='4'>

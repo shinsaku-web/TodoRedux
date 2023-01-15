@@ -1,4 +1,5 @@
 import { createTodo, deleteTodo, updateTodo } from '@/features/todos/todoSlice'
+import { Todo } from '@/types/todotypes'
 import { useTodoDispatch, useTodoSelector } from './hooks'
 
 export const useTodos = () => {
@@ -9,11 +10,11 @@ export const useTodos = () => {
   }
 
   const dispatch = useTodoDispatch()
-  const todoCreate = (title: string, content: string) => {
-    dispatch(createTodo({ title, content }))
+  const todoCreate = (todo: Omit<Todo, 'id'>) => {
+    dispatch(createTodo({ title: todo.title, content: todo.content }))
   }
-  const todoUpdate = (id: number, title: string, content: string) => {
-    dispatch(updateTodo({ id, title, content }))
+  const todoUpdate = (todo: Todo) => {
+    dispatch(updateTodo({ id: todo.id, title: todo.title, content: todo.content }))
   }
   const todoDelete = (id: number) => {
     dispatch(deleteTodo({ id }))
