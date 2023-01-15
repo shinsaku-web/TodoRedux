@@ -1,4 +1,3 @@
-import { deleteTodo } from '@/features/todos/todoSlice'
 import { useTodos } from '@/hooks/useTodos'
 import { Todo } from '@/types/todotypes'
 import {
@@ -13,12 +12,14 @@ import {
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 export const UpdateTodoTemplate = () => {
   const router = useRouter()
   const { id } = router.query
-  const [newTodo, setNewTodo] = useState<Omit<Todo, 'id'>>({ title: '', content: '' })
+  const { useGetTodo, todoUpdate, todoDelete } = useTodos()
+
+  const initialTodo = useGetTodo(Number(id))
+  const [newTodo, setNewTodo] = useState<Omit<Todo, 'id'>>(initialTodo)
 
   const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewTodo((prev) => ({ ...prev, title: e.target.value }))
@@ -27,10 +28,6 @@ export const UpdateTodoTemplate = () => {
   const handleChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setNewTodo((prev) => ({ ...prev, content: e.target.value }))
   }
-
-  const dispatch = useDispatch()
-
-  const { todoUpdate } = useTodos()
 
   const handleUpdate = (id: number, title: string, content: string) => {
     todoUpdate(id, title, content)
@@ -43,7 +40,7 @@ export const UpdateTodoTemplate = () => {
 
   const handleDelete = (id: number) => {
     if (confirm('本当に削除しますか？')) {
-      dispatch(deleteTodo({ id }))
+      todoDelete(id)
       router.push('/')
     }
   }
