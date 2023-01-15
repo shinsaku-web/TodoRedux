@@ -1,5 +1,4 @@
-import { useTodos } from '@/hooks/useTodos'
-import { Todo } from '@/types/todotypes'
+import { useCreateTodoTemplate } from '@/hooks/templates/useCreateTodoTemplate'
 import {
   Box,
   Button,
@@ -10,31 +9,10 @@ import {
   Input,
   Textarea,
 } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
 
 export const CreateTodoTemplate = () => {
-  const [newTodo, setNewTodo] = useState<Omit<Todo, 'id'>>({ title: '', content: '' })
-
-  const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTodo((prev) => ({ ...prev, title: e.target.value }))
-  }
-
-  const handleChangeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setNewTodo((prev) => ({ ...prev, content: e.target.value }))
-  }
-
-  const { todoCreate } = useTodos()
-  const router = useRouter()
-
-  const handleClick = () => {
-    todoCreate(newTodo)
-    router.push('/')
-  }
-  const handleGoToTop = () => {
-    router.push('/')
-  }
-
+  const { newTodo, handleChangeTitle, handleChangeContent, handleClickCreate, handleGoToTop } =
+    useCreateTodoTemplate()
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
@@ -62,7 +40,7 @@ export const CreateTodoTemplate = () => {
           <FormHelperText>Enter your todo detail.</FormHelperText>
         </FormControl>
         <Box pt={8}>
-          <Button colorScheme={'blue'} onClick={handleClick} w={'full'}>
+          <Button colorScheme={'blue'} onClick={handleClickCreate} w={'full'}>
             Create
           </Button>
           <Button onClick={handleGoToTop} w={'full'} mt='4'>
