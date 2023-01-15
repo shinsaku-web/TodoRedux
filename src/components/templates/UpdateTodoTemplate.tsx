@@ -29,9 +29,8 @@ export const UpdateTodoTemplate = () => {
 
   const dispatch = useDispatch()
 
-  const handleUpdate = () => {
-    // TODO:純粋関数にすること
-    dispatch(updateTodo({ id, title: newTodo.title, content: newTodo.content }))
+  const handleUpdate = (id: number, title: string, content: string) => {
+    dispatch(updateTodo({ id, title, content }))
     router.push('/')
   }
 
@@ -73,7 +72,11 @@ export const UpdateTodoTemplate = () => {
           <FormHelperText>Enter your todo detail.</FormHelperText>
         </FormControl>
         <Box pt={8}>
-          <Button colorScheme='blue' onClick={handleUpdate} w={'full'}>
+          <Button
+            colorScheme='blue'
+            onClick={() => handleUpdate(Number(id), newTodo.title, newTodo.content)}
+            w={'full'}
+          >
             Update
           </Button>
           <Button onClick={handleGoToTop} w={'full'} mt='4'>
