@@ -1,4 +1,4 @@
-import { createTodo } from '@/features/todos/todoSlice'
+import { useTodos } from '@/hooks/useTodos'
 import { Todo } from '@/types/todotypes'
 import {
   Box,
@@ -12,7 +12,6 @@ import {
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 export const CreateTodoTemplate = () => {
   const [newTodo, setNewTodo] = useState<Omit<Todo, 'id'>>({ title: '', content: '' })
@@ -25,11 +24,11 @@ export const CreateTodoTemplate = () => {
     setNewTodo((prev) => ({ ...prev, content: e.target.value }))
   }
 
-  const dispatch = useDispatch()
+  const { todoCreate } = useTodos()
   const router = useRouter()
 
   const handleClick = () => {
-    dispatch(createTodo({ title: newTodo.title, content: newTodo.content }))
+    todoCreate(newTodo.title, newTodo.content)
     router.push('/')
   }
   const handleGoToTop = () => {
