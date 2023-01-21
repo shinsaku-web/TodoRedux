@@ -1,5 +1,7 @@
+import { SERVER_HOST } from '@/constants/constants'
 import { Todo } from '@/types/todotypes'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 const initialTodos: { todos: Todo[] } = {
   todos: [
@@ -10,6 +12,11 @@ const initialTodos: { todos: Todo[] } = {
 }
 
 const getRandomId = () => Math.floor(Math.random() * 10 ** 10)
+
+export const getTodos = createAsyncThunk('todos/getTodos', async () => {
+  const { data } = await axios.get(SERVER_HOST + '/todo')
+  return data as Todo[]
+})
 
 export const todoSlice = createSlice({
   name: 'todos',
@@ -42,6 +49,14 @@ export const todoSlice = createSlice({
       const newTodos = state.todos.filter((todo) => todo.id !== action.payload.id)
       state.todos = newTodos
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getTodos.fulfilled, (state, action) => {
+      state.todos = action.payload
+    })
+    // builder.addCase(getTodos.rejected, (state, action) => {
+    //   state.todos = []
+    // })
   },
 })
 
