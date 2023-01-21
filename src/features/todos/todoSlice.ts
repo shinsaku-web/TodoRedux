@@ -15,6 +15,9 @@ export const todoSlice = createSlice({
   name: 'todos',
   initialState: initialTodos,
   reducers: {
+    setTodos: (state, action: PayloadAction<Todo[]>) => {
+      state.todos = action.payload
+    },
     createTodo: (state, action: PayloadAction<Omit<Todo, 'id'>>) => {
       state.todos.push({
         id: getRandomId(),
@@ -42,6 +45,6 @@ export const todoSlice = createSlice({
   },
 })
 
-export const { createTodo, updateTodo, deleteTodo } = todoSlice.actions
+export const { setTodos, createTodo, updateTodo, deleteTodo } = todoSlice.actions
 
 export default todoSlice.reducer

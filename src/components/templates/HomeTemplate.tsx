@@ -4,6 +4,7 @@ import { TodoItem } from '../molecules/TodoItem'
 
 export const HomeTemplate = () => {
   const { todos, handleClickCreate } = useHomeTemplate()
+
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
