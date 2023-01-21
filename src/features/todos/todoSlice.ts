@@ -54,9 +54,12 @@ export const todoSlice = createSlice({
     builder.addCase(getTodos.fulfilled, (state, action) => {
       state.todos = action.payload
     })
-    // builder.addCase(getTodos.rejected, (state, action) => {
-    //   state.todos = []
-    // })
+    builder.addCase(getTodos.pending, (state, action) => {
+      console.log('読み込み中...')
+    })
+    builder.addCase(getTodos.rejected, (state, action) => {
+      state.todos = [{ id: 1, title: 'エラー', content: 'エラーです' }]
+    })
   },
 })
 
