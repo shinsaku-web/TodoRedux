@@ -1,3 +1,4 @@
+/* eslint-disable import/named */
 import { Todo } from '@/types/todotypes'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
