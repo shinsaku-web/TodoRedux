@@ -23,7 +23,7 @@ export const UpdateTodoTemplate = () => {
   return (
     <Box>
       <Heading as='h1' size='xl' color={'blue.400'} textAlign={'center'}>
-        Update Todo {id}
+        Update Todo
       </Heading>
       <Box pt={6}>
         <FormControl>
